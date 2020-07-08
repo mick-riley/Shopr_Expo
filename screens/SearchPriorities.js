@@ -67,26 +67,25 @@ export default class SearchPriorities extends Component {
   }
 
   fibValue = (items) => {
+    let orderedList = [];
     let value = items.length;
     items.forEach((item) => {
-      this.setState({orderedList: [... this.state.orderedList,
-      {
+      orderedList.push({
         id: item.id,
         product: item.product,
         brand: item.brand,
         value: this.fib(value)
-      }]});
+      });
       value--;
     });
 
     this.props.navigation.navigate('SearchQuantity',
     {
-      list: this.state.orderedList
-    })
+      list: orderedList
+    });
   }
 
   render() {
-      const listItems = [];
       console.log(this.state.data);
       return (
         <View style={styles.container}>
@@ -95,7 +94,7 @@ export default class SearchPriorities extends Component {
             <DraggableFlatList
             data={this.state.data}
             renderItem={this.renderItem}
-            keyExtractor={item => item.id}
+            keyExtractor={(item, index) => index.toString()}
             onDragEnd={({ data }) => this.setState({ data })}
             />
           </View>

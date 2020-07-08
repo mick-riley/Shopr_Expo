@@ -7,6 +7,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import GroceryList from "../components/GroceryList";
 import Icon from 'react-native-vector-icons/Ionicons';
 import {db} from '../functions/Fire';
+import shortid from 'shortid';
 
 Icon.loadFont();
 
@@ -84,7 +85,7 @@ export default class Home extends Component {
         querySnapshot.forEach((res) => {
             let label = res.data().product + " | " + res.data().brand;
             if (!items.includes(label)){
-                items.push({id: counter, name: label});
+                items.push({id: shortid.generate(), name: label});
                 counter += 1;
             }
         });
