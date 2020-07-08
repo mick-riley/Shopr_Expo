@@ -17,6 +17,8 @@ import SearchQuantity from './screens/SearchQuantity';
 import * as firebase from 'firebase';
 import { Ionicons } from '@expo/vector-icons';
 import {db} from './functions/Fire';
+import SearchItemsReview from './screens/SearchItemsReview';
+import ProcessorScreen from './screens/ProcessorScreen';
 
 Icon.loadFont();
 
@@ -27,7 +29,9 @@ const ListNavigator = createStackNavigator({
   Home: Home,
   GroceryList: GroceryListDetails,
   Search: SearchPriorities,
-  SearchQuantity: SearchQuantity
+  SearchQuantity: SearchQuantity,
+  ItemsReview: SearchItemsReview,
+  Processor: ProcessorScreen
 },{
   initialRouteName: "Home"
 })

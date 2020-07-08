@@ -81,7 +81,8 @@ export default class SearchPriorities extends Component {
 
     this.props.navigation.navigate('SearchQuantity',
     {
-      list: orderedList
+      list: orderedList,
+      budget: this.props.navigation.state.params.budget
     });
   }
 

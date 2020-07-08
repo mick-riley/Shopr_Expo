@@ -6,7 +6,7 @@ export default class ListItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            quantity: 0,
+            quantity: 1,
             product: props.item.product,
             brand: props.item.brand,
             id: props.item.id,
@@ -42,7 +42,7 @@ export default class ListItem extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress = {() => {
-                        this.state.quantity - 1 >= 0 ? 
+                        this.state.quantity - 1 >= 1 ? 
                         this.setState({quantity: this.state.quantity - 1}) :
                         this.setState({quantity: this.state.quantity});
                     }}

@@ -18,7 +18,6 @@ export default class SearchQuantity extends Component {
     }
 
     updateQuantity = (item) => {
-        console.log(item);
         this.setState(state => {
             const list = state.list.map((listItem, j) => {
                 if (listItem.id === item.id) {
@@ -30,10 +29,9 @@ export default class SearchQuantity extends Component {
                         quantity: item.quantity
                     }
                 } else {
-                    return item;
+                    return listItem;
                 }
             });
-        
             return {
             list,
             };
@@ -62,7 +60,14 @@ export default class SearchQuantity extends Component {
                 <View>
                     <Button 
                         title = "Submit"
-                        onPress = {() => console.log(this.state.list)}
+                        onPress = {() => {
+                                this.props.navigation.navigate('ItemsReview',
+                                {
+                                    list: this.state.list,
+                                    budget: this.props.navigation.state.params.budget
+                                }) 
+                            }
+                        }
                     />
                 </View>
             </View>

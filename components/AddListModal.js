@@ -41,13 +41,15 @@ export default class AddListModal extends Component {
                     value = {this.state.listName}
                     />
 
-                    <TextInput style = {styles.listInput}
-                    placeholder ='Enter Budget'
-                    onChangeText = {text => {
-                        this.setState({ budget: text});
-                        console.log(this.state.budget);
-                    }}
-                    value = {this.state.budget}
+                    <TextInput 
+                        style = {styles.listInput}
+                        placeholder ='Enter Budget'
+                        onChangeText = {text => {
+                            this.setState({ budget: text});
+                            console.log(this.state.budget);
+                        }}
+                        value = {this.state.budget}
+                        keyboardType = {"numeric"}
                     />
                     
                     <TouchableOpacity style={styles.addList} onPress={this.createTodo}>

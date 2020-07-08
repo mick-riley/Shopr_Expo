@@ -17,7 +17,8 @@ export default class GroceryListDetails extends Component {
                 <TouchableOpacity onPress= {() => {
                     navigation.navigate('Search',
                     {
-                        list: navigation.state.params.list.todos
+                        list: navigation.state.params.list.todos,
+                        budget: navigation.state.params.list.budget
                     }
                     )}
                 } >
