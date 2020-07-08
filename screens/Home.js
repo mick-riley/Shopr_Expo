@@ -37,7 +37,7 @@ export default class Home extends Component {
                 this.props.navigation.navigate('GroceryList',
                     {
                         list: list,
-                        items: this.state.uniqueItems,
+                        items: this.state.uniqueItems.slice(0,49),
                         updateList: this.updateList,
                         user: this.user
                     })

@@ -14,11 +14,13 @@ export default class GroceryListDetails extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             headerRight: () => (
-                <TouchableOpacity onPress= {() => navigation.navigate('Search',
+                <TouchableOpacity onPress= {() => {
+                    navigation.navigate('Search',
                     {
-                        list: this.list
+                        list: navigation.state.params.list.todos
                     }
-                )} >
+                    )}
+                } >
                     <Ionicons name='md-search' style={styles.iconStyle}/>
                 </TouchableOpacity>
             )
@@ -54,7 +56,9 @@ export default class GroceryListDetails extends Component {
                 todos: firebase.firestore.
                     FieldValue.arrayUnion({
                         product: item.product, 
-                        brand: item.brand})
+                        brand: item.brand,
+                        id: shortid.generate()
+                        })
             }).then(result => {
                 console.log(result);
                 return ;
@@ -106,10 +110,10 @@ export default class GroceryListDetails extends Component {
 
     componentDidMount(){
         this.setState({autoCompleteItems: this.props.navigation.state.params.items});
+        this.setState({list: this.props.navigation.state.params.list});
     }
 
     componentWillUnmount(){
-        this.setState({list: this.props.navigation.state.params.list});
     }
     
     render () {
@@ -117,22 +121,18 @@ export default class GroceryListDetails extends Component {
         const newItems = [];
         const itemCount = list.todos.length;
         const completedCount = list.todos.filter(todo => todo.completed).length;
-
+        console.log(this.state.list)
         return (
             <SafeAreaView style = {styles.container}>
                 <View style={[styles.section, styles.header]}>
                     <View>
                         <Text style ={styles.title}> {list.name} </Text>
-                        <Text style ={styles.itemCount}>
-                            {//{completedCount} of {itemCount} 
-                            }
-                        <Flatlist 
+                        <FlatList 
                             data = {list.todos}
                             keyExtractor = {item => item.id}
                             showsVerticalScrollIndicator = {false}
                             renderItem = {({item,index}) => this.renderListItems(item,index)}
                         />
-                        </Text>
                     </View>
                 </View>
 

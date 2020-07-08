@@ -9,22 +9,25 @@ import Home from './screens/Home';
 import Profile from './screens/Profile';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GroceryListDetails from './screens/GroceryListDetails';
-import Search from './screens/Search';
+import SearchPriorities from './screens/SearchPriorities';
 import QuickSearch from './screens/QuickSearch';
 import QuickSearchResults from './screens/QuickSearchResults';
 import SupermarketMap from './screens/SupermarketMap';
-
-Icon.loadFont();
-
-
+import SearchQuantity from './screens/SearchQuantity';
 import * as firebase from 'firebase';
 import { Ionicons } from '@expo/vector-icons';
 import {db} from './functions/Fire';
 
+Icon.loadFont();
+
+
+
+
 const ListNavigator = createStackNavigator({
   Home: Home,
   GroceryList: GroceryListDetails,
-  Search: Search
+  Search: SearchPriorities,
+  SearchQuantity: SearchQuantity
 },{
   initialRouteName: "Home"
 })
@@ -40,12 +43,6 @@ const QuickSearchNavigator = createStackNavigator({
   Map: SupermarketMap
 },{
   initialRouteName: "QuickSearch"
-})
-
-const MapNavigator = createStackNavigator({
-  Map: SupermarketMap
-},{
-  initialRouteName: "Map"
 })
 
 const AppTabNavigator = createBottomTabNavigator ({
